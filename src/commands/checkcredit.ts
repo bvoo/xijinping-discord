@@ -20,6 +20,13 @@ class CheckCredit extends Command {
     async execute(client: Client, interaction: BaseCommandInteraction) {
         let user = interaction.options.get('user', true).value?.toString();
         
+        if (user) {
+            let userName = client.users.cache.get(user);
+            if (userName) {
+                console.log(`${interaction.user.username} used ${interaction.commandName} on ${userName.username}`);
+            }
+        }
+
         const credit = require('./credit.json');
         if (user) {
             if (!credit[user]) {

@@ -21,7 +21,7 @@ class SocialCredit extends Command {
                     .setDescription('yeppers')
                     .setRequired(true)
             )
-            .addUserOption(option => 
+            .addUserOption(option =>
                 option
                     .setName('user')
                     .setDescription('The user')
@@ -35,7 +35,15 @@ class SocialCredit extends Command {
         let mathematics = interaction.options.get('mathematics', true).value?.toString();
         let number = interaction.options.get('number', true) as unknown as any;
         let user = interaction.options.get('user', true).value?.toString();
-        
+
+        if (user) {
+            let userName = client.users.cache.get(user);
+            if (userName) {
+                console.log(`${interaction.user.username} used ${interaction.commandName} with ${mathematics} ${number} ${userName.username}`);
+            }
+        }
+
+
         let author = interaction.user.id;
         if (author == user) {
             let embed = new MessageEmbed()
@@ -43,7 +51,7 @@ class SocialCredit extends Command {
                 .setURL('https://bvoo.xyz/')
                 .setTitle('no')
                 .setDescription('cant do that to yourself sorry');
-            
+
             await interaction.reply({ embeds: [embed], ephemeral: true });
             return
         }
@@ -68,16 +76,16 @@ class SocialCredit extends Command {
                 return;
             }
         });
-        
+
 
         let embed = new MessageEmbed()
             .setColor('#2e2e2e')
             .setURL('https://bvoo.xyz/');
-        
+
         if (mathematics === 'add') {
             embed.setTitle('Added ' + number.value + ' credits.');
         } else if (mathematics === 'subtract') {
-            embed.setTitle('Subtracted ' + number.value + ' credits.' );
+            embed.setTitle('Subtracted ' + number.value + ' credits.');
         }
         if (user) {
             embed.setDescription(`<@${user}> now has ${credit[user]} credits`);
