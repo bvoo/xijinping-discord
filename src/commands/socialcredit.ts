@@ -39,7 +39,7 @@ class SocialCredit extends Command {
         if (user) {
             let userName = client.users.cache.get(user);
             if (userName) {
-                console.log(`${interaction.user.username} used ${interaction.commandName} with ${mathematics} ${number} ${userName.username}`);
+                console.log(`${interaction.user.username} used ${interaction.commandName} with ${mathematics} ${number.value} ${userName.username}`);
             }
         }
 
