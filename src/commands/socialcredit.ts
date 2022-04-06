@@ -36,6 +36,17 @@ class SocialCredit extends Command {
         let number = interaction.options.get('number', true) as unknown as any;
         let user = interaction.options.get('user', true).value?.toString();
         
+        let author = interaction.user.id;
+        if (author == user) {
+            let embed = new MessageEmbed()
+                .setColor('#2e2e2e')
+                .setURL('https://bvoo.xyz/')
+                .setTitle('no')
+                .setDescription('cant do that to yourself sorry');
+            
+            await interaction.reply({ embeds: [embed], ephemeral: true });
+            return
+        }
         // check for user in credit.json
         const credit = require('./credit.json');
         if (user && number) {
