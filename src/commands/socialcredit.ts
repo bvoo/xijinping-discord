@@ -47,7 +47,7 @@ class SocialCredit extends Command {
             await interaction.reply({ embeds: [embed], ephemeral: true });
             return
         }
-        // check for user in credit.json
+
         const credit = require('./credit.json');
         if (user && number) {
             if (!credit[user]) {
@@ -61,7 +61,6 @@ class SocialCredit extends Command {
             };
         }
 
-        // save credit.json
         const fs = require('fs');
         fs.writeFile('./src/commands/credit.json', JSON.stringify(credit), (err: any) => {
             if (err) {
@@ -84,7 +83,7 @@ class SocialCredit extends Command {
             embed.setDescription(`<@${user}> now has ${credit[user]} credits`);
         }
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed] });
     }
 }
 
