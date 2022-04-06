@@ -15,7 +15,7 @@ async function registerSlashCommands(commands: Command[]) {
 
         const commandData = commands.map(x => x.data.toJSON());
         await rest.put(
-            Routes.applicationGuildCommands(process.env.CLIENT_ID!, '886518244490510387'),
+            Routes.applicationCommands(process.env.CLIENT_ID!),
             { body: commandData },
         );
 
