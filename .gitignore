@@ -2,4 +2,4 @@
 yarn.lock
 yarn-error.log
 node_modules
-./src/commands/credit.json
+src/commands/credit.json
